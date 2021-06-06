@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+//separated form for creating a new blog into its own component
 const BlogForm = ({ addBlog }) => {
     const [ title, setTitle ] = useState('')
     const [ author, setAuthor ] = useState('')
