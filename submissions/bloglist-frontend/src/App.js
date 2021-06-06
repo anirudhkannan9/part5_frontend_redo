@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
+import SuccessNotification from './components/SuccessNotification'
+import ErrorNotification from './components/ErrorNotification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -15,6 +17,9 @@ const App = () => {
   const [ title, setTitle ] = useState('')
   const [ author, setAuthor ] = useState('')
   const [ url, setUrl ] = useState('')
+
+  const [ successMessage, setSuccessMessage ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState('')
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -43,6 +48,10 @@ const App = () => {
       .create(blogObject)
       .then(returnedBlog => {
         setBlogs(blogs.concat(returnedBlog))
+        setSuccessMessage(`A new blog ${returnedBlog.title} by ${returnedBlog.author} added`)
+        setTimeout(() => {
+          setSuccessMessage('')
+        }, 5000)
         setTitle('')
         setAuthor('')
         setUrl('')
@@ -65,6 +74,10 @@ const App = () => {
       setPassword('')
     } catch (exception) {
       console.log('error logging in lol')
+      setErrorMessage('Wrong username or password')
+      setTimeout(() => {
+        setErrorMessage('')
+      }, 5000)
     }
     console.log('logging in with', username, password)
   }
@@ -80,6 +93,7 @@ const App = () => {
   if (user === null) {
     return (
       <div>
+        <ErrorNotification message={errorMessage}/>
         <h2>Log in to application</h2>
         <LoginForm handleLogin={handleLogin} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
       </div>
@@ -87,6 +101,7 @@ const App = () => {
   } else {
     return (
       <div>
+        <SuccessNotification message={successMessage}/>
         <h2>blogs</h2>
         <div>
           <p>{user.name} logged in </p> <button onClick={handleLogout}>logout</button>
