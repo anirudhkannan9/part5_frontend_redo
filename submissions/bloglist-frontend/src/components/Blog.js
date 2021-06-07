@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
+import blogService from '../services/blogs'
 
-const Blog = ( {blog} ) => {
+const Blog = ( { blog } ) => {
   const [ visible, setVisible ] = useState(false)
+  const [ localBlog, setLocalBlog ] = useState(blog)
+  //const [ likes, setLikes ] = useState(blog.likes)
 
   const hideWhenVisible = { display: visible ? 'none' : ''}
   const showWhenVisible = { display: visible ? '' : 'none' }
 
   const toggleVisibility = event => setVisible(!visible)
   
-
-  const like = (event) => {
-    console.log(event.target, 'clicked')
+  const like = async blog  => {
+    const oldBlog = localBlog
+    const likedBlog = {...localBlog, likes: oldBlog.likes + 1}
+    const likedBlogReturned = await blogService.update(likedBlog.id, likedBlog)
+    console.log('RETURNED', likedBlogReturned)
+    setLocalBlog(likedBlogReturned)
   }
-
 
   const blogStyle = {
     paddingTop: 10,
@@ -25,13 +30,13 @@ const Blog = ( {blog} ) => {
   return (
     <div style={blogStyle}>
       <div style={hideWhenVisible}>
-        {blog.title} {blog.author} <button onClick={toggleVisibility}>view</button>
+        {localBlog.title} {localBlog.author} <button onClick={toggleVisibility}>view</button>
       </div>
       <div style={showWhenVisible}>
         <pre>
-          {blog.title} {blog.author}
-          {'\n'}{blog.url}
-          {'\n'}{blog.likes}<button onClick={like}>like</button>
+          {localBlog.title} {localBlog.author}
+          {'\n'}{localBlog.url}
+          {'\n'}{localBlog.likes}<button onClick={() => like(blog)}>like</button>
           {'\n'}{blog.user.name}
         </pre>
         <button onClick={toggleVisibility}>hide</button>
