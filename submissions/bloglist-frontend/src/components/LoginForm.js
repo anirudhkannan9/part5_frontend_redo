@@ -11,21 +11,21 @@ const LoginForm = ({ handleLogin }) => {
     const login = (event) => {
         event.preventDefault()
         console.log('in LOGINFORM component, logging in with', username, password)
-        handleLogin({ 
-            username: username, 
-            password: password 
+        handleLogin({
+            username: username,
+            password: password
         })
         setUsername('')
         setPassword('')
     }
-    
+
     return (
         <div>
             <h2>Log in</h2>
             <form onSubmit={login}>
                 <div>
                     username
-                    <input 
+                    <input
                         value={username}
                         name="Username"
                         onChange={handleUsernameChange}
@@ -33,7 +33,7 @@ const LoginForm = ({ handleLogin }) => {
                 </div>
                 <div>
                     password
-                    <input 
+                    <input
                         type="password"
                         value={password}
                         name="Password"

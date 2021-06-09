@@ -7,7 +7,7 @@ const Blog = ( { blog } ) => {
   const [ localBlog, setLocalBlog ] = useState(blog)
   const [ allowDelete, setAllowDelete ] = useState(false)
 
-  const hideWhenVisible = { display: visible ? 'none' : ''}
+  const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
   const showIfLoggedInUserCreatedBlog = { display: allowDelete ? '' : 'none' }
 
@@ -19,10 +19,10 @@ const Blog = ( { blog } ) => {
       setAllowDelete(true)
     }
   }
-  
+
   const like = async blog  => {
     const oldBlog = localBlog
-    const likedBlog = {...localBlog, likes: oldBlog.likes + 1}
+    const likedBlog = { ...localBlog, likes: oldBlog.likes + 1 }
     const likedBlogReturned = await blogService.update(likedBlog.id, likedBlog)
     setLocalBlog(likedBlogReturned)
   }
@@ -34,9 +34,6 @@ const Blog = ( { blog } ) => {
       console.log(deleteRequest)
       setLocalBlog(null)
     }
-    //console.log(JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username, ' is allowed to delete: ', blog)
-    //console.log('user token: ', user.token)
-    //console.log('blog id: ', blog.id)
   }
 
   const blogStyle = {
@@ -62,7 +59,7 @@ const Blog = ( { blog } ) => {
             {'\n'}<button style={showIfLoggedInUserCreatedBlog} onClick={() => deleteBlog(blog)}>remove</button>
           </pre>
           <button onClick={toggleVisibility}>hide</button>
-       
+
         </div>
       </div>
     )
