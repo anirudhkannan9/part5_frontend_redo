@@ -25,9 +25,7 @@ const App = () => {
     )  
   }, [])
 
-  const initialRenderHook = blogs => {
-    setBlogs(blogs.sort((a, b) => parseInt(a.likes) - parseInt(b.likes)))
-  }
+  const initialRenderHook = blogs => setBlogs(blogs.sort((a, b) => parseInt(a.likes) - parseInt(b.likes)))
 
 
 
