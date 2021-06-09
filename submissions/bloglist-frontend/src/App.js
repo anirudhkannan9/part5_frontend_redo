@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     blogService
       .getAll()
-      .then(initialBlogs =>initialRenderHook(initialBlogs))  
+      .then(initialBlogs => initialRenderHook(initialBlogs))
   }, [])
 
   const initialRenderHook = blogs => setBlogs(blogs.sort((a, b) => parseInt(a.likes) - parseInt(b.likes)))
@@ -70,13 +70,13 @@ const App = () => {
   }
 
   const loginForm = () => (
-    <Togglable buttonLabel={"log in"}>
+    <Togglable buttonLabel={'log in'}>
       <LoginForm handleLogin={handleLogin}/>
     </Togglable>
   )
 
   const addBlogForm = () => (
-    <Togglable buttonLabel={"create new blog"} ref={blogFormRef}>
+    <Togglable buttonLabel={'create new blog'} ref={blogFormRef}>
       <BlogForm addBlog={addBlog} />
     </Togglable>
   )
