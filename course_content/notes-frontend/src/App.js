@@ -19,12 +19,11 @@ const App = () => {
 
   const noteFormRef = useRef()
 
-
   useEffect(() => {
     noteService
       .getAll()
       .then(initialNotes => {
-      setNotes(initialNotes)
+        setNotes(initialNotes)
     })
   }, [])
 

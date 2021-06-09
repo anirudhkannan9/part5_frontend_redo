@@ -4,7 +4,6 @@ import blogService from '../services/blogs'
 const Blog = ( { blog } ) => {
   const [ visible, setVisible ] = useState(false)
   const [ localBlog, setLocalBlog ] = useState(blog)
-  //const [ likes, setLikes ] = useState(blog.likes)
 
   const hideWhenVisible = { display: visible ? 'none' : ''}
   const showWhenVisible = { display: visible ? '' : 'none' }
@@ -15,7 +14,7 @@ const Blog = ( { blog } ) => {
     const oldBlog = localBlog
     const likedBlog = {...localBlog, likes: oldBlog.likes + 1}
     const likedBlogReturned = await blogService.update(likedBlog.id, likedBlog)
-    console.log('RETURNED', likedBlogReturned)
+    //console.log('RETURNED', likedBlogReturned)
     setLocalBlog(likedBlogReturned)
   }
 
@@ -36,7 +35,7 @@ const Blog = ( { blog } ) => {
         <pre>
           {localBlog.title} {localBlog.author}
           {'\n'}{localBlog.url}
-          {'\n'}{localBlog.likes}<button onClick={() => like(blog)}>like</button>
+          {'\n'}likes: {localBlog.likes}<button onClick={() => like(blog)}>like</button>
           {'\n'}{blog.user.name}
         </pre>
         <button onClick={toggleVisibility}>hide</button>
