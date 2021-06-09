@@ -16,10 +16,20 @@ const App = () => {
   const blogFormRef = useRef()
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
+    blogService
+      .getAll()
+      .then(initialBlogs =>
+        //console.log(initialBlogs) 
+        //setBlogs(initialBlogs)
+        initialRenderHook(initialBlogs)
     )  
   }, [])
+
+  const initialRenderHook = blogs => {
+    setBlogs(blogs.sort((a, b) => parseInt(a.likes) - parseInt(b.likes)))
+  }
+
+
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBloglistAppUser')
