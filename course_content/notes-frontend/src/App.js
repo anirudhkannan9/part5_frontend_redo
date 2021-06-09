@@ -13,8 +13,8 @@ const App = () => {
   const [showAll, setShowAll] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
 
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser ] = useState(null)
 
   const noteFormRef = useRef()
@@ -39,7 +39,7 @@ const App = () => {
 const toggleImportanceOf = id => {
   const note = notes.find(n => n.id === id)
   const changedNote = { ...note, important: !note.important }
-  
+
   noteService
   .update(id, changedNote)
     .then(returnedNote => {
@@ -52,7 +52,7 @@ const toggleImportanceOf = id => {
     setTimeout(() => {
       setErrorMessage(null)
     }, 5000)
-  })    
+  })
 }
 
 const addNote = (noteObject) => {
@@ -74,8 +74,6 @@ const handleLogin = async (loginObject) => {
     )
     noteService.setToken(user.token)
     setUser(user)
-    setUsername('')
-    setPassword('')
   } catch (exception) {
     setErrorMessage('Wrong credentials')
     setTimeout(() => {
@@ -88,8 +86,8 @@ const handleLogout = (event) => {
   window.localStorage.removeItem('loggedNoteAppUser')
   noteService.setToken(null)
   setUser(null)
-  setUsername('')
-  setPassword('')
+  //setUsername('')
+  //setPassword('')
 }
 
 const loginForm = () => (
@@ -105,7 +103,7 @@ const noteForm = () => (
 )
 
 const logoutButton = () => <button onClick={handleLogout}>log out</button>
-  
+
   return (
     <div>
       <h1>Notes</h1>
@@ -124,12 +122,12 @@ const logoutButton = () => <button onClick={handleLogout}>log out</button>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? 'important' : 'all' }
         </button>
-      </div>   
+      </div>
       <ul>
-        {notesToShow.map(note => 
+        {notesToShow.map(note =>
             <Note
               key={note.id}
-              note={note} 
+              note={note}
               toggleImportance={() => toggleImportanceOf(note.id)}
             />
         )}
