@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import blogService from '../services/blogs'
 import PropTypes from 'prop-types'
@@ -13,11 +14,11 @@ const Blog = ( { blog } ) => {
 
   const toggleVisibility = () => {
     setVisible(!visible)
-    if (blog.user.username === JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username) {
-      console.log('Blog user: ', blog.user.username)
-      console.log('Logged in user: ', JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username)
-      setAllowDelete(true)
-    }
+    // if (blog.user.username === JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username) {
+    //   console.log('Blog user: ', blog.user.username)
+    //   console.log('Logged in user: ', JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username)
+    //   setAllowDelete(true)
+    // }
   }
 
   const like = async ()  => {
@@ -48,11 +49,11 @@ const Blog = ( { blog } ) => {
     return (
       <div style={blogStyle} className='blog'>
         <div style={hideWhenVisible} className='defaultShowContent'>
-          {localBlog.title} {localBlog.author} <button onClick={toggleVisibility}>view</button>
+          {localBlog.title} | {localBlog.author} <button onClick={toggleVisibility}>view</button>
         </div>
         <div style={showWhenVisible} className='defaultHideContent'>
           <pre>
-            {localBlog.title} {localBlog.author}
+            {localBlog.title} | {localBlog.author}
             {'\n'}{localBlog.url}
             {'\n'}likes: {localBlog.likes}<button onClick={() => like(blog)}>like</button>
             {'\n'}{blog.user.name}
