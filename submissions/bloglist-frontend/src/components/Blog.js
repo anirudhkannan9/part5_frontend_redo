@@ -11,7 +11,7 @@ const Blog = ( { blog } ) => {
   const showWhenVisible = { display: visible ? '' : 'none' }
   const showIfLoggedInUserCreatedBlog = { display: allowDelete ? '' : 'none' }
 
-  const toggleVisibility = event => {
+  const toggleVisibility = () => {
     setVisible(!visible)
     if (blog.user.username === JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username) {
       console.log('Blog user: ', blog.user.username)
@@ -20,7 +20,7 @@ const Blog = ( { blog } ) => {
     }
   }
 
-  const like = async blog  => {
+  const like = async ()  => {
     const oldBlog = localBlog
     const likedBlog = { ...localBlog, likes: oldBlog.likes + 1 }
     const likedBlogReturned = await blogService.update(likedBlog.id, likedBlog)
@@ -46,11 +46,11 @@ const Blog = ( { blog } ) => {
 
   if (localBlog !== null) {
     return (
-      <div style={blogStyle}>
-        <div style={hideWhenVisible}>
+      <div style={blogStyle} className='blog'>
+        <div style={hideWhenVisible} className='defaultShowContent'>
           {localBlog.title} {localBlog.author} <button onClick={toggleVisibility}>view</button>
         </div>
-        <div style={showWhenVisible}>
+        <div style={showWhenVisible} className='defaultHideContent'>
           <pre>
             {localBlog.title} {localBlog.author}
             {'\n'}{localBlog.url}
