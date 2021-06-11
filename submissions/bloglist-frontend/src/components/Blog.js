@@ -7,6 +7,7 @@ const Blog = ( { blog } ) => {
   const [ visible, setVisible ] = useState(false)
   const [ localBlog, setLocalBlog ] = useState(blog)
   const [ allowDelete, setAllowDelete ] = useState(false)
+  const [ likesClicked, setLikesClicked ] = useState(false)
 
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
@@ -55,7 +56,7 @@ const Blog = ( { blog } ) => {
           <pre>
             {localBlog.title} | {localBlog.author}
             {'\n'}{localBlog.url}
-            {'\n'}likes: {localBlog.likes}<button onClick={() => like(blog)}>like</button>
+            {'\n'}likes: {localBlog.likes}<button className='likeButton' onClick={() => like(blog)}>like</button>
             {'\n'}{blog.user.name}
             {'\n'}<button style={showIfLoggedInUserCreatedBlog} onClick={() => deleteBlog(blog)}>remove</button>
           </pre>
