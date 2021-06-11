@@ -55,10 +55,12 @@ describe('Blog app', function() {
             cy.contains('test blog post submitted by Cypress | Cypress')
         })
 
-        // it.only('logged in user can like a blog', function() {
-        //     cy.contains('view').click()
-        //     cy.contains('like').click()
-        // })
+        it('logged in user can like a blog', function() {
+            cy.contains('view').click()
+            cy.contains('likes: 0')
+            cy.contains('like').click()
+            cy.contains('likes: 1')
+        })
 
     })
 })
