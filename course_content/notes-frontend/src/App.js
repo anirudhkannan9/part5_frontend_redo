@@ -13,8 +13,8 @@ const App = () => {
   const [showAll, setShowAll] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  //const [username, setUsername] = useState('')
+  //const [password, setPassword] = useState('')
   const [user, setUser ] = useState(null)
 
   const noteFormRef = useRef()
@@ -45,7 +45,7 @@ const toggleImportanceOf = id => {
     .then(returnedNote => {
     setNotes(notes.map(note => note.id !== id ? note : returnedNote))
   })
-  .catch(error => {
+  .catch(() => {
     setErrorMessage(
       `Note '${note.content}' was already removed from server`
     )
@@ -82,7 +82,7 @@ const handleLogin = async (loginObject) => {
   }
 }
 
-const handleLogout = (event) => {
+const handleLogout = () => {
   window.localStorage.removeItem('loggedNoteAppUser')
   noteService.setToken(null)
   setUser(null)
