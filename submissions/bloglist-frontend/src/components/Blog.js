@@ -15,11 +15,11 @@ const Blog = ( { blog } ) => {
 
   const toggleVisibility = () => {
     setVisible(!visible)
-    // if (blog.user.username === JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username) {
-    //   console.log('Blog user: ', blog.user.username)
-    //   console.log('Logged in user: ', JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username)
-    //   setAllowDelete(true)
-    // }
+    if (blog.user.username === JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username) {
+      console.log('Blog user: ', blog.user.username)
+      console.log('Logged in user: ', JSON.parse(window.localStorage.getItem('loggedBloglistAppUser')).username)
+      setAllowDelete(true)
+    }
   }
 
   const like = async ()  => {
@@ -58,7 +58,7 @@ const Blog = ( { blog } ) => {
             {'\n'}{localBlog.url}
             {'\n'}likes: {localBlog.likes}<button className='likeButton' onClick={() => like(blog)}>like</button>
             {'\n'}{blog.user.name}
-            {'\n'}<button style={showIfLoggedInUserCreatedBlog} onClick={() => deleteBlog(blog)}>remove</button>
+            {'\n'}<button className='removeButton' style={showIfLoggedInUserCreatedBlog} onClick={() => deleteBlog(blog)}>remove</button>
           </pre>
           <button onClick={toggleVisibility}>hide</button>
 
