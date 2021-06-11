@@ -24,22 +24,22 @@ const LoginForm = ({ handleLogin } ) => {
 
       <form onSubmit={login}>
         <div>
-          username: 
+          username:
           <input
           value={username}
           onChange={handleUsernameChange}
         />
         </div>
         <div>
-          password: 
-          <input 
+          password:
+          <input
             type="password"
             value={password}
             onChange={handlePasswordChange}
           />
         </div>
         <button type="submit">login</button>
-        
+
 
       </form>
     </div>
