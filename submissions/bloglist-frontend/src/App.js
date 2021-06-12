@@ -21,7 +21,7 @@ const App = () => {
       .then(initialBlogs => initialRenderHook(initialBlogs))
   }, [])
 
-  const initialRenderHook = blogs => setBlogs(blogs.sort((a, b) => parseInt(a.likes) - parseInt(b.likes)))
+  const initialRenderHook = blogs => setBlogs(blogs.sort((a, b) => parseInt(b.likes) - parseInt(a.likes)))
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBloglistAppUser')
