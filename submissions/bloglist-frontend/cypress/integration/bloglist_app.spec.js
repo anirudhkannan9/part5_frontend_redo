@@ -74,7 +74,7 @@ describe('Blog app', function() {
             cy.get('.blog').should('not.exist')
         })
 
-        it.only('user who did not create a blog cannot delete it', function() {
+        it('user who did not create a blog cannot delete it', function() {
             cy.contains('logout').click()
             cy.contains('log in').click()
             cy.get('#username').type('kannana1')
@@ -83,6 +83,32 @@ describe('Blog app', function() {
 
             cy.contains('view').click()
             cy.get('.removeButton').should('have.css', 'display', 'none')
+        })
+
+        it('blogs are ordered in descending order of likes', function() {
+            cy.createBlogWithLikes({ title: 'cypress test blog with 1 like', author: 'Cypress', url: 'link1.com', likes: 1 })
+            cy.createBlogWithLikes({ title: 'cypress test blog with 2 likes', author: 'Cypress', url: 'link1.com', likes: 2 })
+            cy.createBlogWithLikes({ title: 'cypress test blog with 3 likes', author: 'Cypress', url: 'link1.com', likes: 3 })
+            cy.createBlogWithLikes({ title: 'cypress test blog with 4 likes', author: 'Cypress', url: 'link1.com', likes: 4 })
+
+            cy
+                .get('.blog')
+                .eq(0)
+                .contains('cypress test blog with 4 likes')
+                .should('exist')
+            cy.get('.blog').eq(0).contains('view').click().get('pre').contains('likes: 4')
+
+            cy.get('.blog').eq(1).contains('cypress test blog with 3 likes').should('exist')
+            cy.get('.blog').eq(1).contains('view').click().get('pre').contains('likes: 3')
+
+            cy.get('.blog').eq(2).contains('cypress test blog with 2 likes').should('exist')
+            cy.get('.blog').eq(2).contains('view').click().get('pre').contains('likes: 2')
+
+            cy.get('.blog').eq(3).contains('cypress test blog with 1 like').should('exist')
+            cy.get('.blog').eq(3).contains('view').click().get('pre').contains('likes: 1')
+
+            cy.get('.blog').eq(4).contains('boilerplate created in beforeEach by Cypress').should('exist')
+            cy.get('.blog').eq(4).contains('view').click().get('pre').contains('likes: 0')
         })
 
     })
