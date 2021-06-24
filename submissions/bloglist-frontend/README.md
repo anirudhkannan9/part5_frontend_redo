@@ -1,3 +1,47 @@
+# Bloglist: a web app with MongoDB (via Mongoose), Express, React, and Node.js
+- Built frontend and backend of MERN-stack app to list blog posts and allow creation/deletion/other behaviour
+- Implemented token-based user administration and authentication (jsonwebtoken, bcrypt)
+- Extracted token and user authentication functionality into middleware
+- Implemented login, token persistence, and blog creation/deletion in frontend; frontend conditionally renders
+blogs based on user-specified parameters (users can ‘like’ blogs; blogs displayed in order of likes)
+- Modularized frontend of application into 7 components
+- Wrote and ran unit tests for API and token authentication in backend (Jest, supertest)
+- Wrote and ran tests for component rendering and interactive behaviour in frontend (Jest)
+- Wrote and ran E2E tests of application frontend & backend (Cypress)
+
+## Running the app
+
+You must download both the frontend (this repo) and backend () repositories. 
+
+After downloading the repositories, navigate to the directories that contain them and run
+### `npm install` 
+in BOTH the frontend AND backend repos to install the project's dependencies.
+
+In the backend repository: 
+### `npm start` 
+starts the server at localhost:3003
+
+In the frontend repository:
+### `npm start`
+starts the frontend of the application at [http://localhost:3000](http://localhost:3000/) (this is the address you'll need to go to to actually interact with the app via its frontend). 
+
+The server and the frontend must run simultaneously. You'll also need to put the .env file in the backend root directory. Email me at anirudhkannan9[AT]gmail[DOT]com for my .env file. It probably won't work even with the .env, because you may need access to the MongoDB Atlas Cluster I use to store data in the backend, so I've provided some demos of the app below. 
+
+## Demos (in progress)
+
+### Failed log in
+
+### Successful log in 
+
+### Viewing blogs
+
+### 'Liking' a blog
+
+### Creating new blogs
+
+### Deleting a blog
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
