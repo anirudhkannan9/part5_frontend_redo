@@ -1,4 +1,4 @@
-# Bloglist: a web app with MongoDB (via Mongoose), Express, React, and Node.js
+# Bloglist: a MERN-stack web app
 - Built frontend and backend of MERN-stack app to list blog posts and allow creation/deletion/other behaviour
 - Implemented token-based user administration and authentication (jsonwebtoken, bcrypt)
 - Extracted token and user authentication functionality into middleware
