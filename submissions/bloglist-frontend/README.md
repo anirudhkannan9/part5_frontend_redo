@@ -11,7 +11,7 @@ blogs based on user-specified parameters (users can ‘like’ blogs; blogs disp
 
 ## Running the app
 
-You must download both the frontend (this repo) and backend () repositories. 
+You must download both the frontend (this repo) and backend (https://github.com/anirudhkannan9/part5_backend_redo/tree/main/submissions/bloglist-backend) repositories. 
 
 After downloading the repositories, navigate to the directories that contain them and run
 ### `npm install` 
